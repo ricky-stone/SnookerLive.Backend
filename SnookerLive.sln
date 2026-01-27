@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comparer", "Comparer\Compar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchesWorker", "MatchesWorker\MatchesWorker.csproj", "{8DF71341-2A9B-4BDE-9377-1DBBA7399377}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchApi", "MatchApi\MatchApi.csproj", "{43956BB8-8451-47D7-A33E-CA0F0CB6F267}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{8DF71341-2A9B-4BDE-9377-1DBBA7399377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DF71341-2A9B-4BDE-9377-1DBBA7399377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DF71341-2A9B-4BDE-9377-1DBBA7399377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43956BB8-8451-47D7-A33E-CA0F0CB6F267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43956BB8-8451-47D7-A33E-CA0F0CB6F267}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43956BB8-8451-47D7-A33E-CA0F0CB6F267}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43956BB8-8451-47D7-A33E-CA0F0CB6F267}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

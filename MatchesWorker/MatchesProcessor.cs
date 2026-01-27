@@ -21,9 +21,12 @@ public sealed class MatchesProcessor(
             PropertyNameCaseInsensitive = true
         };
 
+    private const string MatchesQueueName = "matches";
+    private const string NotificationsQueueName = "notifications";
+
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        queue.Start("matches", HandleMessage);
+        queue.Start(MatchesQueueName, HandleMessage);
         return Task.Delay(Timeout.Infinite, stoppingToken);
     }
 
@@ -180,7 +183,7 @@ public sealed class MatchesProcessor(
     private async Task HandleScoreChange(MatchRecord newMatch)
     {
         var message = CreateMatchNotificationMessage("MatchScoreChanged", newMatch);
-        await bus.PublishAsync("notifications", message);
+        await bus.PublishAsync(NotificationsQueueName, message);
     }
 
     #region Notification Helpers

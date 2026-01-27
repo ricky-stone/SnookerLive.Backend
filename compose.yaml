@@ -34,11 +34,28 @@
     restart: unless-stopped
     networks:
       - external
+  
+  match-api:
+    image: match-api
+    container_name: match-api
+    build:
+      context: .
+      dockerfile: MatchApi/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    networks:
+      - external
 
 networks:
   external:
     name: external
     external: true
+
+
+
 
 
 
