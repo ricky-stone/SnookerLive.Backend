@@ -11,7 +11,7 @@ public sealed class MediumQueueService: BackgroundService
     private readonly QueueService queueService;
     private readonly IQueueConsumer<SnookerOrgMessage> queue;
     private readonly ILogger logger;
-    public MediumQueueService(QueueService queueService, IQueueConsumer<SnookerOrgMessage> queue, ILogger<RealTimeQueueService> logger)
+    public MediumQueueService(QueueService queueService, IQueueConsumer<SnookerOrgMessage> queue, ILogger<MediumQueueService> logger)
     {
         this.queueService = queueService;
         this.queue = queue;

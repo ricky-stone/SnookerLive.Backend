@@ -11,7 +11,7 @@ public sealed class LowQueueService: BackgroundService
     private readonly QueueService queueService;
     private readonly IQueueConsumer<SnookerOrgMessage> queue;
     private readonly ILogger logger;
-    public LowQueueService(QueueService queueService, IQueueConsumer<SnookerOrgMessage> queue, ILogger<RealTimeQueueService> logger)
+    public LowQueueService(QueueService queueService, IQueueConsumer<SnookerOrgMessage> queue, ILogger<LowQueueService> logger)
     {
         this.queueService = queueService;
         this.queue = queue;

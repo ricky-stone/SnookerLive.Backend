@@ -11,7 +11,7 @@ public sealed class HighQueueService: BackgroundService
     private readonly QueueService queueService;
     private readonly IQueueConsumer<SnookerOrgMessage> queue;
     private readonly ILogger logger;
-    public HighQueueService(QueueService queueService, IQueueConsumer<SnookerOrgMessage> queue, ILogger<RealTimeQueueService> logger)
+    public HighQueueService(QueueService queueService, IQueueConsumer<SnookerOrgMessage> queue, ILogger<HighQueueService> logger)
     {
         this.queueService = queueService;
         this.queue = queue;

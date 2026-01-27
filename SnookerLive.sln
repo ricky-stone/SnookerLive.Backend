@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit", "Rabbit\Rabbit.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{7DCB3B0D-4251-45AD-B419-D755744DC577}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveMatchesSync", "LiveMatchesSync\LiveMatchesSync.csproj", "{52E661C5-6FD8-4AEA-A99D-371C9A079CFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{7DCB3B0D-4251-45AD-B419-D755744DC577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DCB3B0D-4251-45AD-B419-D755744DC577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DCB3B0D-4251-45AD-B419-D755744DC577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E661C5-6FD8-4AEA-A99D-371C9A079CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E661C5-6FD8-4AEA-A99D-371C9A079CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E661C5-6FD8-4AEA-A99D-371C9A079CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E661C5-6FD8-4AEA-A99D-371C9A079CFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
