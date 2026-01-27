@@ -24,6 +24,7 @@ public sealed class MatchesProcessor(
     private const string MatchesQueueName = "matches";
     private const string NotificationsQueueName = "notifications";
     private const string SessionsQueueName = "sessions";
+    private const string FramesQueueName = "frames";
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -64,9 +65,16 @@ public sealed class MatchesProcessor(
             var matchRecord = SnookerOrgMatchMapper.ToMatchDto(match);
             await Task.WhenAll(
                 ProcessMatch(matchRecord),
-                ProcessMatchSessions(matchRecord)
+                ProcessMatchSessions(matchRecord),
+                ProcessMatchFrames(matchRecord)
             );
         }
+    }
+
+    private async Task ProcessMatchFrames(MatchRecord match)
+    {
+        var message = new FrameMessage("IncomingData", match);
+        await bus.PublishAsync(FramesQueueName, message);
     }
 
     private async Task ProcessMatchSessions(MatchRecord match)

@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionWorker", "SessionWor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionApi", "SessionApi\SessionApi.csproj", "{4E9CB2FC-0AAF-4772-A1DD-61656933F253}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameWorker", "FrameWorker\FrameWorker.csproj", "{04C5E5FC-CBB5-4D60-B7B9-942C51967E70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,5 +75,9 @@ Global
 		{4E9CB2FC-0AAF-4772-A1DD-61656933F253}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E9CB2FC-0AAF-4772-A1DD-61656933F253}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E9CB2FC-0AAF-4772-A1DD-61656933F253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C5E5FC-CBB5-4D60-B7B9-942C51967E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C5E5FC-CBB5-4D60-B7B9-942C51967E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C5E5FC-CBB5-4D60-B7B9-942C51967E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C5E5FC-CBB5-4D60-B7B9-942C51967E70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
