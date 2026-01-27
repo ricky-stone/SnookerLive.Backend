@@ -51,7 +51,7 @@ public sealed class SnookerOrgRequestWorker(
             var data = await dispatcher.EnqueueAsync(priority, cts.Token, message.Url);
 
             var queueName = QueueResolver.ResolveQueue(message.Url);
-            
+
             if (queueName is null)
             {
                 logger.LogWarning("Cannot resolve queue for Url. {url}", message.Url);
@@ -59,7 +59,7 @@ public sealed class SnookerOrgRequestWorker(
             }
 
             var responseMessage = new SnookerOrgDataResponse("IncomingData") { Data = data };
-            
+
             await bus.PublishAsync(queueName, responseMessage);
         }
         catch (Exception e)
@@ -67,10 +67,4 @@ public sealed class SnookerOrgRequestWorker(
             logger.LogError(e, "Failed processing message)");
         }
     }
-}
-
-public sealed class SnookerOrgDataResponse(string action) : BaseMessage(action)
-{
-    public string Guid { get; set; } = string.Empty;
-    public object? Data { get; set; }
 }
