@@ -1,0 +1,95 @@
+# =========================
+# OS / System files
+# =========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =========================
+# .NET build output
+# =========================
+bin/
+obj/
+out/
+artifacts/
+
+# =========================
+# User-specific files
+# =========================
+*.user
+*.suo
+*.rsuser
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Visual Studio
+# =========================
+.vs/
+.vscode/ipch/
+*.VC.db
+*.VC.VC.opendb
+
+# =========================
+# VS Code
+# =========================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+
+# =========================
+# JetBrains Rider / IntelliJ
+# =========================
+.idea/
+*.iml
+
+# =========================
+# NuGet
+# =========================
+*.nupkg
+.nuget/packages/
+.nuget/NuGet.Config
+
+# =========================
+# Docker
+# =========================
+**/docker-compose.override.yml
+**/.env
+**/.env.local
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Temporary / backups
+# =========================
+*.tmp
+*.bak
+*.swp
+*.orig
+
+# =========================
+# Test results
+# =========================
+TestResults/
+coverage/
+coverage.xml
+
+# =========================
+# Rider run configs (optional)
+# =========================
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
