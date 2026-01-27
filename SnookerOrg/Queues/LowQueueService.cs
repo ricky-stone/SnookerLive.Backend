@@ -17,16 +17,14 @@ public sealed class LowQueueService: BackgroundService
         this.queue = queue;
         this.logger = logger;
     }
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        logger.LogInformation("Starting consumer for snookerorg.low");
         queue.Start("snookerorg.low", OnMessage);
-        await Task.Delay(Timeout.Infinite, stoppingToken);
+        return Task.CompletedTask;
     }
 
-    private Task OnMessage(SnookerOrgMessage message)
+    private async Task OnMessage(SnookerOrgMessage message)
     {
         queueService.Enqueue(Priority.Low, message);
-        return Task.CompletedTask;
     }
 }
