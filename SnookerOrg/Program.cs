@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Rabbit;
 using SnookerOrg;
+using SnookerOrg.Queues;
 
 await Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>
@@ -24,8 +25,18 @@ await Host.CreateDefaultBuilder(args)
         {
             http.BaseAddress = new Uri("https://api.snooker.org/");
             http.DefaultRequestHeaders.TryAddWithoutValidation(
-                "X-Requested-By", "RickyStone");
+                "X-Requested-By",
+                "RickyStone");
         });
+        services.AddSingleton<QueueService>();
+        services.AddHostedService<HighQueueService>();
+        services.AddHostedService<LowQueueService>();
+        services.AddHostedService<MediumQueueService>();
+        services.AddHostedService<RealTimeQueueService>();
+
+        services.AddSingleton<SnookerOrgApiDispatcher>();
+        services.AddHostedService(sp => sp.GetRequiredService<SnookerOrgApiDispatcher>());
+        services.AddHostedService<SnookerOrgRequestWorker>();
         services.AddRabbit();
     })
     .RunConsoleAsync();
