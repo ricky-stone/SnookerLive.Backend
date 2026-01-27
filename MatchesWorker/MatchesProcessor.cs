@@ -23,6 +23,7 @@ public sealed class MatchesProcessor(
 
     private const string MatchesQueueName = "matches";
     private const string NotificationsQueueName = "notifications";
+    private const string SessionsQueueName = "sessions";
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -61,8 +62,23 @@ public sealed class MatchesProcessor(
         foreach (var match in matches)
         {
             var matchRecord = SnookerOrgMatchMapper.ToMatchDto(match);
-            await ProcessMatch(matchRecord);
+            await Task.WhenAll(
+                ProcessMatch(matchRecord),
+                ProcessMatchSessions(matchRecord)
+            );
         }
+    }
+
+    private async Task ProcessMatchSessions(MatchRecord match)
+    {
+        var message = new SessionMessage("IncomingData")
+        {
+            ScheduledStartDate = match.ScheduledDate,
+            Sessions = match.Sessions,
+            MatchId = match.Id
+        };
+
+        await bus.PublishAsync(SessionsQueueName, message);
     }
 
     private async Task ProcessMatch(MatchRecord match)
