@@ -1,4 +1,9 @@
-﻿services:
+﻿networks:
+  external:
+    name: external
+    external: true
+
+services:
   snookerorg:
     image: snookerorg
     container_name: snookerorg
@@ -61,8 +66,29 @@
     networks:
       - external
 
-networks:
-  external:
-    name: external
-    external: true
+  session-worker:
+    image: session-worker
+    container_name: session-worker
+    build:
+      context: .
+      dockerfile: SessionWorker/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external
+
+  session-api:
+    image: session-api
+    container_name: session-api
+    build:
+      context: .
+      dockerfile: SessionApi/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    networks:
+      - external
 
