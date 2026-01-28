@@ -34,6 +34,7 @@ artifacts/
 .vscode/ipch/
 *.VC.db
 *.VC.VC.opendb
+.vscode
 
 # =========================
 # VS Code
