@@ -1,0 +1,13 @@
+{
+  "name": "SnookerLive Dev",
+  "dockerComposeFile": ["../compose.yml"],
+  "service": "dev",
+  "workspaceFolder": "/workspaces/snookerlive",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit"
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+networks:
+  external:
+    name: external
+    external: true
+
+services:
+  dev:
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    container_name: debug-container
+    working_dir: /workspaces/snookerlive
+    volumes:
+      - ./:/workspaces/snookerlive
+    command: sleep infinity
+    env_file:
+      - .env
+    networks:
+      - external
+
