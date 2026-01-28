@@ -73,6 +73,13 @@ public sealed class MatchesProcessor(
 
     private async Task ProcessMatchFrames(MatchRecord match)
     {
+        if(match.FrameScores is null || match.FrameScores == "")
+        {
+            if(logger.IsEnabled(LogLevel.Information))
+                logger.LogInformation("No frame scores to process for match {MatchId}, skipping", match.Id);
+            return;
+        }
+
         var message = new FrameMessage("IncomingData", match);
         await bus.PublishAsync(FramesQueueName, message);
     }

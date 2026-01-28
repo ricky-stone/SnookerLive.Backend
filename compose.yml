@@ -104,3 +104,17 @@ services:
     networks:
       - external
 
+  frame-api:
+    image: frame-api
+    container_name: frame-api
+    build:
+      context: .
+      dockerfile: FrameApi/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    networks:
+      - external
+

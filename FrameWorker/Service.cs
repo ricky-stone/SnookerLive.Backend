@@ -9,9 +9,12 @@ namespace FrameWorker;
 public sealed class Service(ILogger<Service> logger, IQueueConsumer<FrameMessage> queue, IFrameApiClient frameApiClient)
     : BackgroundService
 {
+
+    public const string FrameQueueName = "frames";
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        queue.Start("frame.inbox", HandleMessage);
+        queue.Start(FrameQueueName, HandleMessage);
     }
 
     private async Task HandleMessage(FrameMessage message)
@@ -30,8 +33,12 @@ public sealed class Service(ILogger<Service> logger, IQueueConsumer<FrameMessage
     private async Task HandleIncomingFrame(FrameMessage data)
     {
         var frames = FrameScoreBuilder.BuildFrameScores(data.Match);
-        if (frames is not { Count: 0 })
+        if (frames.Count == 0)
+        {
+            if(logger.IsEnabled(LogLevel.Information))
+                logger.LogInformation("No frames to process for match {MatchId}", data.Match.Id);
             return;
+        }
 
         foreach (var frame in frames)
             await ProcessFrame(frame);
