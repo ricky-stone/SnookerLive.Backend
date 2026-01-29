@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Rabbit;
+using Redis;
 using SessionWorker;
 
 await Host.CreateDefaultBuilder(args)
@@ -23,5 +24,6 @@ await Host.CreateDefaultBuilder(args)
         services.AddSessionHttpClient();
         services.AddHostedService<Service>();
         services.AddRabbit();
+        services.AddRedisCache();
     })
     .RunConsoleAsync();

@@ -6,31 +6,23 @@ namespace SessionApi;
 public interface ISessionService
 {
     Task<SessionRecord?> GetSessionByIdAsync(string id);
-    Task<bool> AddAsync(SessionRecord session);
-    Task<bool> UpdateAsync(SessionRecord session);
+    Task UpsertAsync(SessionRecord session);
 }
 
-public class SessionService(SessionDbContext db) : ISessionService
+public sealed class SessionService(SessionDbContext db) : ISessionService
 {
-    public async Task<SessionRecord?> GetSessionByIdAsync(string id) =>
-        await db.Sessions.FindAsync(id);
+    public Task<SessionRecord?> GetSessionByIdAsync(string id) =>
+        db.Sessions.FindAsync(id).AsTask();
 
-    public async Task<bool> AddAsync(SessionRecord session)
+    public async Task UpsertAsync(SessionRecord session)
     {
-        await db.Sessions.AddAsync(session);
-        await db.SaveChangesAsync();
-        return true;
-    }
+        var existing = await db.Sessions.FindAsync(session.Id);
 
-    public async Task<bool> UpdateAsync(SessionRecord session)
-    {
-        var existing = await db.Sessions
-            .AsTracking()
-            .FirstOrDefaultAsync(s => s.Id == session.Id);
-        if (existing is null) return false;
+        if (existing is null)
+            db.Sessions.Add(session);
+        else
+            db.Entry(existing).CurrentValues.SetValues(session);
 
-        db.Entry(existing).CurrentValues.SetValues(session);
         await db.SaveChangesAsync();
-        return true;
     }
 }

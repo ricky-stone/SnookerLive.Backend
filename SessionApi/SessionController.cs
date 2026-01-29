@@ -7,24 +7,22 @@ namespace SessionApi;
 [Route("")]
 public sealed class SessionController(ISessionService service) : ControllerBase
 {
-    [HttpGet("{id}")]
+    [HttpGet]
+    [Route("{id}")]
     public async Task<IActionResult> GetById([FromRoute] string id)
     {
         var session = await service.GetSessionByIdAsync(id);
         return session is not null ? Ok(session) : NotFound();
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Add([FromBody] SessionRecord session)
-    {
-        await service.AddAsync(session);
-        return NoContent();
-    }
-
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] SessionRecord session)
+    [Route("{id}")]
+    public async Task<IActionResult> Upsert([FromRoute] string id, [FromBody] SessionRecord session)
     {
-        var success = await service.UpdateAsync(session);
-        return success ? NoContent() : NotFound();
+        if (string.IsNullOrWhiteSpace(session.Id) || session.Id != id)
+            return BadRequest("Body id must match route id.");
+
+        await service.UpsertAsync(session);
+        return NoContent();
     }
 }
