@@ -106,6 +106,7 @@ public sealed class MatchesProcessor(
         if (existingMatch is null)
         {
             await client.AddAsync(match);
+            await redis.SetAsync(MatchCacheKeyPrefix + match.Id, match, TimeSpan.FromHours(2));
             return;
         }
 
