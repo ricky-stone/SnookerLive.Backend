@@ -1,10 +1,9 @@
 use('Matches');
 
-const id = "2346-8-1";
+const id = "2346-9-2";
 
 const updates = {
-  Status: 3,
-  Distance: 0
+  Round: 99
 };
 
 db.getCollection('all').findOneAndUpdate(

@@ -1,8 +1,7 @@
 use('Matches');
 
 const query = {
-  _id: "2346-8-1",
-  EventId: 2346,
+  _id: "2346-9-2"
 };
 
 const count = db.getCollection('all').countDocuments(query);
