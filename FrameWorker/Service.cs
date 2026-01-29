@@ -1,16 +1,22 @@
+using System.Diagnostics.CodeAnalysis;
 using Comparer;
 using Domain;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Rabbit;
+using Redis;
 
 namespace FrameWorker;
 
-public sealed class Service(ILogger<Service> logger, IQueueConsumer<FrameMessage> queue, IFrameApiClient frameApiClient)
-    : BackgroundService
+public sealed class Service(
+    ILogger<Service> logger,
+    IQueueConsumer<FrameMessage> queue,
+    IFrameApiClient frameApiClient,
+    ICacheService redis) : BackgroundService
 {
 
     public const string FrameQueueName = "frames";
+    public const string FrameCacheKeyPrefix = "frame:";
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -35,7 +41,7 @@ public sealed class Service(ILogger<Service> logger, IQueueConsumer<FrameMessage
         var frames = FrameScoreBuilder.BuildFrameScores(data.Match);
         if (frames.Count == 0)
         {
-            if(logger.IsEnabled(LogLevel.Information))
+            if (logger.IsEnabled(LogLevel.Information))
                 logger.LogInformation("No frames to process for match {MatchId}", data.Match.Id);
             return;
         }
@@ -50,6 +56,11 @@ public sealed class Service(ILogger<Service> logger, IQueueConsumer<FrameMessage
         if (exsisitingFrame is null)
         {
             await frameApiClient.AddAsync(frame);
+            await redis.SetAsync(
+                FrameCacheKeyPrefix + frame.Id,
+                frame,
+                TimeSpan.FromHours(2)
+            );
             return;
         }
 
@@ -58,5 +69,10 @@ public sealed class Service(ILogger<Service> logger, IQueueConsumer<FrameMessage
             return;
 
         await frameApiClient.UpdateAsync(frame);
+        await redis.SetAsync(
+            FrameCacheKeyPrefix + frame.Id,
+            frame,
+            TimeSpan.FromHours(2)
+        );
     }
 }
