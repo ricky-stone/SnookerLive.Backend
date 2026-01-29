@@ -6,6 +6,8 @@ using MatchesWorker.Dto;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Rabbit;
+using Redis;
+using StackExchange.Redis;
 
 namespace MatchesWorker;
 
@@ -13,7 +15,8 @@ public sealed class MatchesProcessor(
     ILogger<MatchesProcessor> logger,
     IQueueConsumer<SnookerOrgDataResponse> queue,
     IMatchApiClient client,
-    IMessageBus bus) : BackgroundService
+    IMessageBus bus,
+    ICacheService redis) : BackgroundService
 {
     private static readonly JsonSerializerOptions JsonOptions =
         new(JsonSerializerDefaults.Web)
@@ -25,6 +28,7 @@ public sealed class MatchesProcessor(
     private const string NotificationsQueueName = "notifications";
     private const string SessionsQueueName = "sessions";
     private const string FramesQueueName = "frames";
+    private const string MatchCacheKeyPrefix = "match:";
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -113,6 +117,7 @@ public sealed class MatchesProcessor(
         var hasScoreChanged = false;
 
         await client.UpdateAsync(match.Id, match);
+        await redis.SetAsync(MatchCacheKeyPrefix + match.Id, match, TimeSpan.FromHours(2));
 
         foreach (var diff in differences)
         {

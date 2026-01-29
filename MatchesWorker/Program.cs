@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Rabbit;
+using Redis;
 
 await Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>
@@ -23,5 +24,6 @@ await Host.CreateDefaultBuilder(args)
         services.AddMatchHttpClient();
         services.AddHostedService<MatchesProcessor>();
         services.AddRabbit();
+        services.AddRedisCache();
     })
     .RunConsoleAsync();

@@ -1,55 +1,58 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using StackExchange.Redis;
 
 namespace Redis;
 
 public interface ICacheService
 {
-    Task SetAsync<T>(string key, T value, TimeSpan? expiration = null);
-    Task<T?> GetAsync<T>(string key);
-    Task InvalidateAsync(string key);
-    Task<bool> ExistsAsync(string key);
+    Task<T?> GetAsync<T>(string key) where T : class;
+    Task SetAsync<T>(string key, T value, TimeSpan ttl) where T : class;
+    Task RemoveAsync(string key);
+    Task<T?> GetOrSetAsync<T>(string key, TimeSpan ttl, Func<Task<T?>> factory) where T : class;
 }
 
 public sealed class RedisCacheService : ICacheService
 {
-    private readonly IDatabase _database;
+    private readonly IDatabase _db;
+
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
-        WriteIndented = false
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
 
     public RedisCacheService(IConnectionMultiplexer redis)
     {
-        _database = redis.GetDatabase();
+        _db = redis.GetDatabase();
     }
 
-    public async Task SetAsync<T>(string key, T value, TimeSpan? expiration = null)
+    public async Task<T?> GetAsync<T>(string key) where T : class
+    {
+        var value = await _db.StringGetAsync(key);
+        if (!value.HasValue) return null;
+
+        return JsonSerializer.Deserialize<T>(value.ToString(), JsonOptions);
+    }
+
+    public Task SetAsync<T>(string key, T value, TimeSpan ttl) where T : class
     {
         var json = JsonSerializer.Serialize(value, JsonOptions);
-        await _database.StringSetAsync(key, json, expiration);
+        return _db.StringSetAsync(key, json, ttl);
     }
 
-    public async Task<T?> GetAsync<T>(string key)
+    public Task RemoveAsync(string key)
+        => _db.KeyDeleteAsync(key);
+
+    public async Task<T?> GetOrSetAsync<T>(string key, TimeSpan ttl, Func<Task<T?>> factory) where T : class
     {
-        var value = await _database.StringGetAsync(key);
+        var cached = await GetAsync<T>(key);
+        if (cached is not null) return cached;
 
-        if (!value.HasValue)
-            return default;
+        var value = await factory();
+        if (value is null) return null;
 
-        var bytes = (byte[])value!;
-        return JsonSerializer.Deserialize<T>(bytes, JsonOptions);
-    }
-
-    public async Task InvalidateAsync(string key)
-    {
-        await _database.KeyDeleteAsync(key);
-    }
-
-    public async Task<bool> ExistsAsync(string key)
-    {
-        return await _database.KeyExistsAsync(key);
+        await SetAsync(key, value, ttl);
+        return value;
     }
 }
