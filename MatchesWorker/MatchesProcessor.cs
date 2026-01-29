@@ -79,8 +79,7 @@ public sealed class MatchesProcessor(
     {
         if(match.FrameScores == "")
         {
-            if(logger.IsEnabled(LogLevel.Information))
-                logger.LogInformation("No frame scores to process for match {MatchId}, skipping", match.Id);
+            logger.LogInformation("No frame scores to process for match {MatchId}, skipping", match.Id);
             return;
         }
 
