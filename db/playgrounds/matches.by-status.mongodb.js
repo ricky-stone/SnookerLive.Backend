@@ -1,12 +1,14 @@
 use('Matches');
 
-const filter = { Status: 0 };
+const query = {
+  _id: "2346-8-1",
+  EventId: 2346,
+};
 
-const count = db.getCollection('all').countDocuments(filter);
+const count = db.getCollection('all').countDocuments(query);
 
 const results = db.getCollection('all')
-  .find(filter)
-  .limit(50)
+  .find(query)
   .toArray();
 
 ({ count, results });
