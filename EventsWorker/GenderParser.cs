@@ -1,3 +1,5 @@
+using Domain.Enums;
+
 namespace EventsWorker;
 
 public class GenderParser
