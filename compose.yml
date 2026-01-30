@@ -81,6 +81,20 @@ services:
       ASPNETCORE_URLS: http://+:80
     networks:
       - external
+  
+  event-api:
+    image: event-api
+    container_name: event-api
+    build:
+      context: .
+      dockerfile: EventApi/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    networks:
+      - external
 
   notification-worker:
     image: notification-worker
