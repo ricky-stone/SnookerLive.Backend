@@ -28,12 +28,38 @@ services:
     networks:
       - external
   
+  events-sync:
+    image: events-sync
+    container_name: events-sync
+    build:
+      context: .
+      dockerfile: EventsSync/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external
+  
   matches-worker:
     image: matches-worker
     container_name: matches-worker
     build:
       context: .
       dockerfile: MatchesWorker/Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./:/src
+    restart: unless-stopped
+    networks:
+      - external
+  
+  events-worker:
+    image: events-worker
+    container_name: events-worker
+    build:
+      context: .
+      dockerfile: EventsWorker/Dockerfile
     env_file:
       - .env
     volumes:
