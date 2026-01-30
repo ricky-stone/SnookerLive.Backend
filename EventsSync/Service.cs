@@ -22,8 +22,7 @@ public sealed class Service(ILogger<Service> logger, IMessageBus bus) : Backgrou
 
         var message = new SnookerOrgMessage("Fetch Events") { Url = ["t", EventType] };
 
-        if (logger.IsEnabled(LogLevel.Information))
-            logger.LogInformation("Sending sync request to {Queue} (t={T})", QueueName, EventType);
+        logger.LogInformation("Sending sync request to {Queue} (t={T})", QueueName, EventType);
 
         await bus.PublishAsync(QueueName, message);
     }
