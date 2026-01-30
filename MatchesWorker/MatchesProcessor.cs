@@ -7,7 +7,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Rabbit;
 using Redis;
-using StackExchange.Redis;
 
 namespace MatchesWorker;
 

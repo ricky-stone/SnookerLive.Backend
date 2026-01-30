@@ -38,7 +38,6 @@ public sealed class Service(
         catch (Exception ex)
         {
             logger.LogError(ex, "Failed to handle session message. Action: {Action}", message.Action);
-            throw;
         }
     }
 
