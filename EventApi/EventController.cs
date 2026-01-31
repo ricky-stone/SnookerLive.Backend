@@ -21,6 +21,27 @@ public sealed class EventController(IEventService service) : ControllerBase
         return Ok(events);
     }
 
+    [HttpGet("season/{season}/upcoming")]
+    public async Task<IActionResult> GetAllUpcomingForSeason([FromRoute] int season, [FromQuery] int? nextDays)
+    {
+        var events = await service.GetUpcomingEventsForSeasonAsync(season, nextDays);
+        return Ok(events);
+    }
+
+    [HttpGet("season/{season}/live")]
+    public async Task<IActionResult> GetAllLiveForSeason([FromRoute] int season)
+    {
+        var events = await service.GetLiveEventsForSeasonAsync(season);
+        return Ok(events);
+    }
+
+    [HttpGet("season/{season}/finished")]
+    public async Task<IActionResult> GetAllFinishedForSeason([FromRoute] int season, [FromQuery] int? nextDays)
+    {
+        var events = await service.GetFinishedEventsForSeasonAsync(season, nextDays);
+        return Ok(events);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] EventRecord @event)
     {
