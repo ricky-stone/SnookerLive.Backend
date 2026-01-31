@@ -36,9 +36,9 @@ public sealed class EventController(IEventService service) : ControllerBase
     }
 
     [HttpGet("season/{season}/finished")]
-    public async Task<IActionResult> GetAllFinishedForSeason([FromRoute] int season, [FromQuery] int? nextDays)
+    public async Task<IActionResult> GetAllFinishedForSeason([FromRoute] int season, [FromQuery] int? lastDays)
     {
-        var events = await service.GetFinishedEventsForSeasonAsync(season, nextDays);
+        var events = await service.GetFinishedEventsForSeasonAsync(season, lastDays);
         return Ok(events);
     }
 

@@ -40,6 +40,18 @@ services:
     networks:
       - external
   
+  finished-event-matches-sync:
+    image: finished-event-matches-sync
+    container_name: finished-event-matches-sync
+    build:
+      context: .
+      dockerfile: FinishedEventMatchesSync/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external
+  
   events-sync:
     image: events-sync
     container_name: events-sync

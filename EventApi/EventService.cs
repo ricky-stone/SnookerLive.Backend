@@ -57,11 +57,10 @@ public class EventService(EventDbContext db) : IEventService
 
     public async Task<List<EventRecord>> GetFinishedEventsForSeasonAsync(int season, int? lastDays)
     {
-        var now = DateTimeOffset.UtcNow;
+        var now = DateTime.UtcNow;
 
         var query = db.Events
-            .Where(e => e.Season == season
-                        && e.EndDate <= now);
+            .Where(e => e.Season == season && e.EndDate <= now);
 
         if (lastDays is not null)
         {

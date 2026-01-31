@@ -6,11 +6,12 @@ namespace SnookerLive;
 
 public sealed class Service(ILogger<Service> logger, IMessageBus bus, SeasonService season, IEventApiClient eventClient) : BackgroundService
 {
-    private const string QueueName = "snookerorg.medium";
+    private const string QueueName = "snookerorg.low";
+    private const int LastDays = 3;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var clock = new ShotClock(TimeSpan.FromMinutes(42), PublishRequestAsync);
+        var clock = new ShotClock(TimeSpan.FromHours(24), PublishRequestAsync);
         await clock.RunAsync(stoppingToken);
     }
 
@@ -22,12 +23,12 @@ public sealed class Service(ILogger<Service> logger, IMessageBus bus, SeasonServ
         try
         {
             var currentSeason = await season.GetCurrentSeasonAsync();
-            logger.LogInformation("Fetching upcoming events for current season {Season}", currentSeason);
+            logger.LogInformation("Fetching finished events for current season {Season}", currentSeason);
 
-            var events = await eventClient.GetAllUpcomingAsync(currentSeason);
+            var events = await eventClient.GetAllFinishedAsync(currentSeason, LastDays);
             if (events is not { Count: > 0 })
             {
-                logger.LogInformation("No upcoming events found for season {Season}", currentSeason);
+                logger.LogInformation("No finished events found for season {Season} with lastDays={LastDays}", currentSeason, LastDays);
                 return;
             }
 
