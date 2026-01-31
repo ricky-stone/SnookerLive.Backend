@@ -24,7 +24,7 @@ public sealed class EventApiClient(HttpClient client) : IEventApiClient
         {
             var errorBody = await response.Content.ReadAsStringAsync();
             throw new HttpRequestException(
-                $"Failed to get event list for season {season} and nextDays {nextDays}. Response: {errorBody}",
+                $"Failed to get event list for season {season}. Response: {errorBody}",
                 null,
                 response.StatusCode);
         }

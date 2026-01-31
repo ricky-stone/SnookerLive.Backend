@@ -27,7 +27,10 @@ public class EventService(EventDbContext db) : IEventService
         var now = DateTime.UtcNow;
 
         var query = db.Events
-            .Where(e => e.Season == season && e.StartDate > now);
+            .Where(e =>
+                e.Season == season &&
+                e.StartDate > now &&
+                e.NumUpcoming > 0);
 
         if (nextDays is not null)
         {

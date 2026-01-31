@@ -21,6 +21,7 @@ await Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
         services.AddHostedService<Service>();
+        services.AddEventHttpClient();
         services.AddSingleton<SeasonService>();
         services.AddRabbit();
     })
