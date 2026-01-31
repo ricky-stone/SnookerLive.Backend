@@ -30,7 +30,7 @@ public class EventService(EventDbContext db) : IEventService
             .Where(e =>
                 e.Season == season &&
                 e.StartDate > now &&
-                e.NumUpcoming > 0);
+                (e.NumUpcoming > 0 || e.NumCompetitors > 0));
 
         if (nextDays is not null)
         {
