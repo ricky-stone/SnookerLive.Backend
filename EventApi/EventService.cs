@@ -45,7 +45,7 @@ public class EventService(EventDbContext db) : IEventService
 
     public async Task<List<EventRecord>> GetLiveEventsForSeasonAsync(int season)
     {
-        var now = DateTimeOffset.UtcNow;
+        var now = DateTime.UtcNow;
 
         return await db.Events
             .Where(e => e.Season == season
