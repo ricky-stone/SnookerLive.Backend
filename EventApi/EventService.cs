@@ -9,7 +9,7 @@ public interface IEventService
     Task<List<EventRecord>> GetAllEventsForSeasonAsync(int season);
     Task<List<EventRecord>> GetUpcomingEventsForSeasonAsync(int season, int? nextDays);
     Task<List<EventRecord>> GetLiveEventsForSeasonAsync(int season);
-    Task<List<EventRecord>> GetFinishedEventsForSeasonAsync(int season, int? lastDays)
+    Task<List<EventRecord>> GetFinishedEventsForSeasonAsync(int season, int? lastDays);
     Task<bool> AddAsync(EventRecord @event);
     Task<bool> UpdateAsync(EventRecord @event);
 }
