@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using Domain;
 
-namespace EventsWorker;
+namespace SnookerLive;
 
 public interface IEventApiClient
 {

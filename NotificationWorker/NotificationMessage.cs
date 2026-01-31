@@ -1,6 +1,6 @@
 using Rabbit;
 
-namespace NotificationWorker;
+namespace SnookerLive;
 
 public sealed class NotificationMessage(string action) : BaseMessage(action)
 {

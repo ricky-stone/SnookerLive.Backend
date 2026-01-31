@@ -1,6 +1,6 @@
 using Rabbit;
 
-namespace LiveMatchesSync;
+namespace SnookerLive;
 
 public class SnookerOrgMessage(string action) : BaseMessage(action)
 {

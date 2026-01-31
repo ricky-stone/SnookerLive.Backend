@@ -2,7 +2,7 @@ using System.Net;
 using System.Net.Http.Json;
 using Domain;
 
-namespace MatchesWorker;
+namespace SnookerLive;
 
 public interface IMatchApiClient
 {

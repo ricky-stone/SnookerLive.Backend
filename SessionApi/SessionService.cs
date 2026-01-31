@@ -1,7 +1,7 @@
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace SessionApi;
+namespace SnookerLive;
 
 public interface ISessionService
 {

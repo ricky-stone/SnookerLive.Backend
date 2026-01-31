@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using Domain;
 
-namespace SessionWorker;
+namespace SnookerLive;
 
 public interface ISessionApiClient
 {

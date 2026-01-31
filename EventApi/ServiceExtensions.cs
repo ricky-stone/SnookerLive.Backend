@@ -1,4 +1,4 @@
-namespace EventApi;
+namespace SnookerLive;
 
 public static class ServiceExtensions
 {

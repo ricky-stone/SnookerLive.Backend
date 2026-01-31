@@ -2,7 +2,7 @@ using Domain;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 
-namespace EventApi;
+namespace SnookerLive;
 
 public class EventDbContext : DbContext
 {

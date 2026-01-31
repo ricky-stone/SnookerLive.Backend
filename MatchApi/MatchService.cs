@@ -1,7 +1,7 @@
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace MatchApi;
+namespace SnookerLive;
 
 public interface IMatchService
 {

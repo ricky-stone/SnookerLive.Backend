@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Comparer;
 using Domain;
 using Microsoft.Extensions.Hosting;
@@ -6,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Rabbit;
 using Redis;
 
-namespace FrameWorker;
+namespace SnookerLive;
 
 public sealed class Service(
     ILogger<Service> logger,

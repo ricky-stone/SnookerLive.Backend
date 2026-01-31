@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace SessionApi;
+namespace SnookerLive;
 
 public static class DatabaseExtensions
 {

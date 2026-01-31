@@ -2,7 +2,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Rabbit;
 
-namespace NotificationWorker;
+namespace SnookerLive;
 
 public sealed class Service : BackgroundService
 {

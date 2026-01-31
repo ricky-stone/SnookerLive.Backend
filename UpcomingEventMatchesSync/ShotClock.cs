@@ -1,4 +1,4 @@
-namespace UpcomingEventMatchesSync;
+namespace SnookerLive;
 
 public sealed class ShotClock(TimeSpan delay, Func<CancellationToken, Task> job)
 {

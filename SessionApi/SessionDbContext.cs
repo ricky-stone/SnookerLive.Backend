@@ -2,7 +2,7 @@ using Domain;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 
-namespace SessionApi;
+namespace SnookerLive;
 
 public class SessionDbContext : DbContext
 {

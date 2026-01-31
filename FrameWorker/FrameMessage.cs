@@ -1,7 +1,7 @@
 using Domain;
 using Rabbit;
 
-namespace FrameWorker;
+namespace SnookerLive;
 
 public class FrameMessage(string action, MatchRecord match) : BaseMessage(action)
 {

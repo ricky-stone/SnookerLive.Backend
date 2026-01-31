@@ -1,4 +1,4 @@
-namespace UpcomingEventMatchesSync;
+namespace SnookerLive;
 
 public sealed class Season
 {

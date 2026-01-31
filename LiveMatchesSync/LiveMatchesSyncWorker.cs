@@ -2,7 +2,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Rabbit;
 
-namespace LiveMatchesSync;
+namespace SnookerLive;
 
 public sealed class LiveMatchesSyncWorker(ILogger<LiveMatchesSyncWorker> logger, IMessageBus bus) : BackgroundService
 {

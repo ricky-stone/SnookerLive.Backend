@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Rabbit;
 using Redis;
-using SessionWorker;
+using SnookerLive;
 
 await Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>

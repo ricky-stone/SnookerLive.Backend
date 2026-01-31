@@ -1,6 +1,6 @@
 using Rabbit;
 
-namespace MatchesWorker;
+namespace SnookerLive;
 
 public sealed class SnookerOrgDataResponse(string action) : BaseMessage(action)
 {

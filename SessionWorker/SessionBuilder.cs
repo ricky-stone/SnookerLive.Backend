@@ -1,7 +1,7 @@
 using System.Globalization;
 using Domain;
 
-namespace SessionWorker;
+namespace SnookerLive;
 
 public static class SessionBuilder
 {

@@ -1,7 +1,7 @@
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventApi;
+namespace SnookerLive;
 
 [ApiController]
 [Route("")]

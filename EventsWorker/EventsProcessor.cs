@@ -1,4 +1,3 @@
-
 using System.Text.Json;
 using Comparer;
 using Domain;
@@ -7,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Rabbit;
 using Redis;
 
-namespace EventsWorker;
+namespace SnookerLive;
 
 public sealed class EventsProcessor(
     ILogger<EventsProcessor> logger,

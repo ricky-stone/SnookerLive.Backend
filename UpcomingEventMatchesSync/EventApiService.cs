@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using Domain;
 
-namespace UpcomingEventMatchesSync;
+namespace SnookerLive;
 
 public interface IEventApiClient
 {

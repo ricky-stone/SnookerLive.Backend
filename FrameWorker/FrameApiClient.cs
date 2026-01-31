@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using Domain;
 
-namespace FrameWorker;
+namespace SnookerLive;
 
 public interface IFrameApiClient
 {

@@ -2,7 +2,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Rabbit;
 
-namespace UpcomingEventMatchesSync;
+namespace SnookerLive;
 
 public sealed class Service(ILogger<Service> logger, IMessageBus bus, SeasonService season, IEventApiClient eventClient) : BackgroundService
 {

@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace EventsWorker;
+namespace SnookerLive;
 
 public static class IdGenerator
 {

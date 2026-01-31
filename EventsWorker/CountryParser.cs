@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace EventsWorker;
+namespace SnookerLive;
 
 public static class CountryParser
 {

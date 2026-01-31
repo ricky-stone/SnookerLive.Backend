@@ -3,9 +3,8 @@ using System.Net;
 using System.Text.RegularExpressions;
 using Domain;
 using Domain.Enums;
-using MatchesWorker.Dto;
 
-namespace MatchesWorker;
+namespace SnookerLive;
 
 public static class SnookerOrgMatchMapper
 {

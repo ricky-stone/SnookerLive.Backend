@@ -2,13 +2,12 @@ using System.Text.Json;
 using Comparer;
 using Domain;
 using Domain.Enums;
-using MatchesWorker.Dto;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Rabbit;
 using Redis;
 
-namespace MatchesWorker;
+namespace SnookerLive;
 
 public sealed class MatchesProcessor(
     ILogger<MatchesProcessor> logger,

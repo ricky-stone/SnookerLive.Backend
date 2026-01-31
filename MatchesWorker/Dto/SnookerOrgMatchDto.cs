@@ -1,4 +1,4 @@
-namespace MatchesWorker.Dto;
+namespace SnookerLive;
 
 public class SnookerOrgMatchDto
 {

@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Domain;
 
-namespace FrameWorker;
+namespace SnookerLive;
 
 public static class FrameScoreBuilder
 {

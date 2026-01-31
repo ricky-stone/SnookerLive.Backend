@@ -2,7 +2,7 @@ using Domain;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 
-namespace FrameApi;
+namespace SnookerLive;
 
 public class FrameDbContext : DbContext
 {

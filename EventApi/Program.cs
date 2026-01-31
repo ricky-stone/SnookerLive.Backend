@@ -1,4 +1,4 @@
-using EventApi;
+using SnookerLive;
 
 var builder = WebApplication.CreateBuilder(args);
 

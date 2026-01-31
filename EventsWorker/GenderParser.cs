@@ -1,6 +1,6 @@
 using Domain.Enums;
 
-namespace EventsWorker;
+namespace SnookerLive;
 
 public class GenderParser
 {

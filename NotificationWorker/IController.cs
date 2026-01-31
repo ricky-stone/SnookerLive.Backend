@@ -1,4 +1,4 @@
-namespace NotificationWorker;
+namespace SnookerLive;
 
 public abstract class IController
 {

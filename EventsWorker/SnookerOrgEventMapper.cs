@@ -2,7 +2,7 @@ using System.Globalization;
 using Domain;
 using Domain.Enums;
 
-namespace EventsWorker;
+namespace SnookerLive;
 
 public static class SnookerOrgEventMapper
 {

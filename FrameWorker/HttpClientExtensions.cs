@@ -1,7 +1,7 @@
 using System.Net;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FrameWorker;
+namespace SnookerLive;
 
 public static class HttpClientExtensions
 {

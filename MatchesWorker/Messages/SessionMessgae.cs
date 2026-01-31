@@ -1,6 +1,6 @@
 using Rabbit;
 
-namespace MatchesWorker;
+namespace SnookerLive;
 
 public class SessionMessage(string action) : BaseMessage(action)
 {

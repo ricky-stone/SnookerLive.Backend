@@ -2,7 +2,7 @@ using System.Text.Json;
 using Domain;
 using Microsoft.Extensions.Logging;
 
-namespace NotificationWorker;
+namespace SnookerLive;
 
 public sealed class MatchInbetweenSessionsController : IController
 {

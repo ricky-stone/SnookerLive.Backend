@@ -1,7 +1,7 @@
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FrameApi;
+namespace SnookerLive;
 
 [ApiController]
 [Route("")]

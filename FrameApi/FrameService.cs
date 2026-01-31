@@ -2,7 +2,7 @@ using System;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace FrameApi;
+namespace SnookerLive;
 
 public interface IFrameService
 {

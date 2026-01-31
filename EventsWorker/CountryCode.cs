@@ -1,4 +1,4 @@
-namespace EventsWorker;
+namespace SnookerLive;
 
 public static class CountryCode
 {

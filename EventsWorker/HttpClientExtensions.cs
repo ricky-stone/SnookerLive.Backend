@@ -1,8 +1,7 @@
 using System.Net;
-using EventsWorker;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EventsWorker;
+namespace SnookerLive;
 
 public static class HttpClientExtensions
 {

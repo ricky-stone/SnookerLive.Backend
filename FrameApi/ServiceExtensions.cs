@@ -1,4 +1,4 @@
-namespace FrameApi;
+namespace SnookerLive;
 
 public static class ServiceExtensions
 {

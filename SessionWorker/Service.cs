@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Rabbit;
 using Redis;
 
-namespace SessionWorker;
+namespace SnookerLive;
 
 public sealed class Service(
     ILogger<Service> logger,

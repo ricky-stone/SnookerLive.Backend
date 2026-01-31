@@ -1,10 +1,10 @@
-﻿using FrameWorker;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Rabbit;
 using Redis;
+using SnookerLive;
 
 await Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>

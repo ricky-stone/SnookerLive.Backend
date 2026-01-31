@@ -1,7 +1,7 @@
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace EventApi;
+namespace SnookerLive;
 
 public interface IEventService
 {
