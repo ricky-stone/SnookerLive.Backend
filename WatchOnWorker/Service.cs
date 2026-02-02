@@ -62,6 +62,6 @@ public sealed class Service(
 
         logger.LogInformation("Storing WatchOn: {WatchOnId} Links Count: {LinkCount}",
             watchOn.Id, watchOn.Links.Count);
-            await redis.SetAsync($"watchon:{watchOn.Id}", watchOn, TimeSpan.FromDays(1));
+            await redis.SetAsync($"watchon:{watchOn.Id}", watchOn, TimeSpan.FromHours(2));
     }
 }
