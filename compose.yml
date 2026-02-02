@@ -132,6 +132,20 @@ services:
     networks:
       - external
   
+  watchon-api:
+    image: watchon-api
+    container_name: watchon-api
+    build:
+      context: .
+      dockerfile: WatchOnApi/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    networks:
+      - external
+  
   event-api:
     image: event-api
     container_name: event-api

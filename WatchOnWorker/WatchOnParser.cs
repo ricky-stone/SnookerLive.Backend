@@ -1,9 +1,8 @@
 using System.Net;
 using System.Text.RegularExpressions;
+using Domain;
 
 namespace SnookerLive;
-
-public sealed record Link(string Name, string? Url);
 
 public static class WatchOnParser
 {

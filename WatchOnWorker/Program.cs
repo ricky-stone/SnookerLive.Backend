@@ -22,6 +22,7 @@ await Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
         services.AddHostedService<Service>();
+        services.AddWatchOnHttpClient();
         services.AddRabbit();
         services.AddRedisCache();
     })

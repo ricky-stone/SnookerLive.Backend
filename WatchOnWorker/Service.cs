@@ -1,3 +1,4 @@
+using Domain;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Rabbit;
@@ -8,6 +9,7 @@ namespace SnookerLive;
 public sealed class Service(
     ILogger<Service> logger,
     IQueueConsumer<WatchOnMessage> queue,
+    IWatchOnApiClient watchOnApiClient,
     ICacheService redis) : BackgroundService
 {
     private const string WatchOnQueueName = "watchon";
@@ -60,8 +62,7 @@ public sealed class Service(
             Links = links
         };
 
-        logger.LogInformation("Storing WatchOn: {WatchOnId} Links Count: {LinkCount}",
-            watchOn.Id, watchOn.Links.Count);
-            await redis.SetAsync($"watchon:{watchOn.Id}", watchOn, TimeSpan.FromHours(2));
+        await watchOnApiClient.UpsertAsync(watchOn);
+        await redis.SetAsync($"watchon:{watchOn.Id}", watchOn, TimeSpan.FromHours(2));
     }
 }

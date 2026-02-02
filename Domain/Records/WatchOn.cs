@@ -1,4 +1,4 @@
-namespace SnookerLive;
+namespace Domain;
 
 public sealed class WatchOn
 {
