@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinishedEventMatchesSync", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveEventMatchesSync", "LiveEventMatchesSync\LiveEventMatchesSync.csproj", "{659D4628-5DE6-4C16-9959-28DEC1839BC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchOnWorker", "WatchOnWorker\WatchOnWorker.csproj", "{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -282,6 +284,18 @@ Global
 		{659D4628-5DE6-4C16-9959-28DEC1839BC1}.Release|x64.Build.0 = Release|Any CPU
 		{659D4628-5DE6-4C16-9959-28DEC1839BC1}.Release|x86.ActiveCfg = Release|Any CPU
 		{659D4628-5DE6-4C16-9959-28DEC1839BC1}.Release|x86.Build.0 = Release|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Debug|x64.Build.0 = Debug|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Debug|x86.Build.0 = Debug|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Release|x64.ActiveCfg = Release|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Release|x64.Build.0 = Release|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Release|x86.ActiveCfg = Release|Any CPU
+		{5D6626AD-3A7E-4EB5-9969-6E932CA1BC9E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

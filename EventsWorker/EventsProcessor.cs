@@ -11,6 +11,7 @@ namespace SnookerLive;
 public sealed class EventsProcessor(
     ILogger<EventsProcessor> logger,
     IQueueConsumer<SnookerOrgDataResponse> queue,
+    IMessageBus bus,
     IEventApiClient client,
     ICacheService redis) : BackgroundService
 {
@@ -22,6 +23,7 @@ public sealed class EventsProcessor(
     
     private const string EventsQueueName = "events";
     private const string EventCacheKeyPrefix = "event:";
+    private const string WatchOnQueueName = "watchon";
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -73,6 +75,18 @@ public sealed class EventsProcessor(
 
     private async Task ProcessEvent(EventRecord @event)
     {
+
+        if (!string.IsNullOrEmpty(@event.CommonNote))
+        {
+            var message = new WatchOnMessage(
+                "IncomingData",
+                @event.Id,
+                @event.SnookerOrgId,
+                @event.CommonNote
+            );
+            await bus.PublishAsync(WatchOnQueueName, message);
+        }
+
         var exisitingEvent = await client.GetAsync(@event.Id);
         if (exisitingEvent is null)
         {
