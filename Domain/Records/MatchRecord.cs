@@ -40,6 +40,4 @@ public sealed class MatchRecord
     public string StatsUrl { get; set; } = string.Empty;
     public string FrameScores { get; set; } = string.Empty;
     public string Sessions { get; set; } = string.Empty;
-    public int SessionFrameCount { get; set; }
-    public bool IsMidSession { get; set; }
 }

@@ -58,9 +58,7 @@ public static class SnookerOrgMatchMapper
         StatsUrl = match.StatsUrl ?? string.Empty,
 
         FrameScores = match.FrameScores ?? string.Empty,
-        Sessions = match.Sessions ?? string.Empty,
-        SessionFrameCount = 0,
-        IsMidSession = false
+        Sessions = match.Sessions ?? string.Empty
     };
 
     private static string BuildId(int eventId, int round, int number) => $"{eventId}-{round}-{number}";
