@@ -50,6 +50,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchOnApi", "WatchOnApi\Wa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSeeder", "EventSeeder\EventSeeder.csproj", "{5D3C188D-94AB-4C00-97CE-374887FDA17C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchSeeder", "MatchSeeder\MatchSeeder.csproj", "{DE6C8473-D6A1-4C56-A400-A5127A535337}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -324,6 +326,18 @@ Global
 		{5D3C188D-94AB-4C00-97CE-374887FDA17C}.Release|x64.Build.0 = Release|Any CPU
 		{5D3C188D-94AB-4C00-97CE-374887FDA17C}.Release|x86.ActiveCfg = Release|Any CPU
 		{5D3C188D-94AB-4C00-97CE-374887FDA17C}.Release|x86.Build.0 = Release|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Debug|x64.Build.0 = Debug|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Debug|x86.Build.0 = Debug|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|x64.ActiveCfg = Release|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|x64.Build.0 = Release|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|x86.ActiveCfg = Release|Any CPU
+		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
