@@ -49,7 +49,6 @@ public static class SnookerOrgMatchMapper
         ScheduledDate = ParseZuluUtc(match.ScheduledDate),
 
         Distance = 0,
-        MidSessionTimeStamp = null,
 
         Note = StripHtml(match.Note),
         ExtendedNote = StripHtml(match.ExtendedNote),

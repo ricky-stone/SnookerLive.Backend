@@ -33,7 +33,6 @@ public sealed class MatchRecord
     public DateTime? EndDate { get; set; }
     public DateTime? ScheduledDate { get; set; }
     public int Distance { get; set; }
-    public DateTime? MidSessionTimeStamp { get; set; }
     public string Note { get; set; } = string.Empty;
     public string ExtendedNote { get; set; } = string.Empty;
     public bool HeldOver { get; set; }
