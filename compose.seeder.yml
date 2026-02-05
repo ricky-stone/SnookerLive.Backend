@@ -1,0 +1,30 @@
+networks:
+  external:
+    name: external
+    external: true
+
+services:
+
+  event-seeder:
+    image: event-seeder
+    container_name: event-seeder
+    build:
+      context: .
+      dockerfile: EventSeeder/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external
+  
+  match-seeder:
+    image: match-seeder
+    container_name: match-seeder
+    build:
+      context: .
+      dockerfile: MatchSeeder/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external
