@@ -21,6 +21,7 @@ await Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices(services =>
     {
+        services.AddPlayerHttpClient();
         services.AddHostedService<Service>();
         services.AddRabbit();
         services.AddRedisCache();
