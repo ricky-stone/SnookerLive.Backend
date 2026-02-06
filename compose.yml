@@ -75,19 +75,7 @@ services:
     restart: unless-stopped
     networks:
       - external
-  
-  candidat-sync:
-    image: candidate-sync
-    container_name: candidate-sync
-    build:
-      context: .
-      dockerfile: CandidateSync/Dockerfile
-    env_file:
-      - .env
-    restart: unless-stopped
-    networks:
-      - external
-  
+    
   player-sync:
     image: player-sync
     container_name: player-sync
@@ -173,21 +161,7 @@ services:
     restart: unless-stopped
     networks:
       - external
-  
-  candidate-worker:
-    image: candidate-worker
-    container_name: candidate-worker
-    build:
-      context: .
-      dockerfile: CandidateWorker/Dockerfile
-    env_file:
-      - .env
-    volumes:
-      - ./:/src
-    restart: unless-stopped
-    networks:
-      - external
-  
+    
   player-worker:
     image: player-worker
     container_name: player-worker
