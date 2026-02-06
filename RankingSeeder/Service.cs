@@ -7,7 +7,7 @@ namespace SnookerLive;
 public sealed class Service(ILogger<Service> logger, IMessageBus bus) : BackgroundService
 {
     private const string QueueName = "snookerorg.low";
-    private const string RankingType = "MoneyRankings";
+    private const string RankingType = "QTRankings";
     private const int currentSeason = 2025;
     private const int targetSeason = 1950;
 
@@ -18,7 +18,7 @@ public sealed class Service(ILogger<Service> logger, IMessageBus bus) : Backgrou
         {
             stoppingToken.ThrowIfCancellationRequested();
 
-            var message = new SnookerOrgMessage("Fetch Events") { Url = ["rt", RankingType, "s", season] };
+            var message = new SnookerOrgMessage("Fetch Rankings") { Url = ["rt", RankingType, "s", season] };
             logger.LogInformation("Sending sync request to {Queue} (s={season})", QueueName, season);
             await bus.PublishAsync(QueueName, message);
         }
