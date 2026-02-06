@@ -52,3 +52,15 @@ services:
     restart: unless-stopped
     networks:
       - external
+  
+  round-seeder:
+    image: round-seeder
+    container_name: round-seeder
+    build:
+      context: .
+      dockerfile: RoundSeeder/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external
