@@ -290,4 +290,18 @@ services:
     networks:
       - external
   
+  ranking-api:
+    image: ranking-api
+    container_name: ranking-api
+    build:
+      context: .
+      dockerfile: RankingApi/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    networks:
+      - external
+  
 

@@ -6,7 +6,7 @@ namespace SnookerLive;
 
 public sealed class Service(ILogger<Service> logger, IMessageBus bus) : BackgroundService
 {
-    private const int RankingType = "MoneyRankings";
+    private const string RankingType = "MoneyRankings";
     private const string QueueName = "snookerorg.medium";
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)

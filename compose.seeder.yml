@@ -40,3 +40,15 @@ services:
     restart: unless-stopped
     networks:
       - external
+  
+  ranking-seeder:
+    image: ranking-seeder
+    container_name: ranking-seeder
+    build:
+      context: .
+      dockerfile: RankingSeeder/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external
