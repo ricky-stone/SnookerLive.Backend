@@ -116,6 +116,20 @@ services:
     networks:
       - external
   
+  ranking-worker:
+    image: ranking-worker
+    container_name: ranking-worker
+    build:
+      context: .
+      dockerfile: RankingWorker/Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./:/src
+    restart: unless-stopped
+    networks:
+      - external
+  
   events-worker:
     image: events-worker
     container_name: events-worker
