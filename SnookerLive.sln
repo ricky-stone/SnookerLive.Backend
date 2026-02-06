@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSeeder", "EventSeeder\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchSeeder", "MatchSeeder\MatchSeeder.csproj", "{DE6C8473-D6A1-4C56-A400-A5127A535337}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerSync", "PlayerSync\PlayerSync.csproj", "{3C35AC28-9575-46C5-93F8-B5274C5ACF58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -338,6 +340,18 @@ Global
 		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|x64.Build.0 = Release|Any CPU
 		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|x86.ActiveCfg = Release|Any CPU
 		{DE6C8473-D6A1-4C56-A400-A5127A535337}.Release|x86.Build.0 = Release|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Debug|x64.Build.0 = Debug|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Debug|x86.Build.0 = Debug|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|x64.ActiveCfg = Release|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|x64.Build.0 = Release|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|x86.ActiveCfg = Release|Any CPU
+		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
