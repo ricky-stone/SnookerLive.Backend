@@ -1,4 +1,6 @@
 using System.Text.Json;
+using Comparer;
+using Domain;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
@@ -10,6 +12,7 @@ namespace SnookerLive;
 public sealed class Service(
     ILogger<Service> logger,
     IQueueConsumer<SnookerOrgDataResponse> queue,
+    IPlayerApiClient playerClient,
     ICacheService redis) : BackgroundService
 {
     private static readonly JsonSerializerOptions JsonOptions =
@@ -65,7 +68,28 @@ public sealed class Service(
         foreach (var player in players)
         {
             var record = SnookerOrgPlayerMapper.ToPlayerRecord(player);
-            logger.LogInformation("Found player {Id}: {FullName}", record.Id, record.DisplayFullName);
+            await HandleIncomingPlayer(record);
         }
+    }
+
+    private async Task HandleIncomingPlayer(PlayerRecord player)
+    {
+
+        logger.LogInformation("Handling incoming player: {id} {Name}", player.Id, player.DisplayFullName);
+
+        var exisitingPlayer = await playerClient.GetAsync(player.Id);
+        if (exisitingPlayer is null)
+        {
+            await playerClient.AddAsync(player);
+            await redis.SetAsync(PlayerCacheKeyPrefix + player.Id, player, TimeSpan.FromHours(24));
+            return;
+        }
+
+        var differences = ModelComparer.Compare(exisitingPlayer, player);
+        if (differences.Count == 0)
+            return;
+        
+        await playerClient.UpdateAsync(player.Id, player);
+        await redis.SetAsync(PlayerCacheKeyPrefix + player.Id, player, TimeSpan.FromHours(24));
     }
 };
