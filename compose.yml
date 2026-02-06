@@ -158,6 +158,20 @@ services:
     networks:
       - external
   
+  player-api:
+    image: player-api
+    container_name: player-api
+    build:
+      context: .
+      dockerfile: PlayerApi/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    networks:
+      - external
+  
   watchon-api:
     image: watchon-api
     container_name: watchon-api

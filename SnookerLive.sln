@@ -56,6 +56,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerSync", "PlayerSync\Pl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerWorker", "PlayerWorker\PlayerWorker.csproj", "{F2C88272-7E3B-41DB-8966-8D2FDD03534C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerApi", "PlayerApi\PlayerApi.csproj", "{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -366,6 +368,18 @@ Global
 		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|x64.Build.0 = Release|Any CPU
 		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|x86.ActiveCfg = Release|Any CPU
 		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|x86.Build.0 = Release|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Debug|x64.Build.0 = Debug|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Debug|x86.Build.0 = Debug|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|x64.ActiveCfg = Release|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|x64.Build.0 = Release|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|x86.ActiveCfg = Release|Any CPU
+		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
