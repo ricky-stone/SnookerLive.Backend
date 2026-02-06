@@ -35,7 +35,8 @@ public static class QueueResolver
             return t switch
             {
                 5 => "events",
-                6 or 7 or 8 or 14 or 15 or 17 or 18 or 19 => "matches",
+                6 or 7 or 8 or 14 or 15 or 17 or 19 => "matches",
+                18 => "candidates",
                 9 or 10 => "players",
                 12 => "rounds",
                 13 or 20 => "events",
