@@ -6,6 +6,7 @@ namespace SnookerLive;
 public interface IWatchOnService
 {
     Task<WatchOn?> GetWatchOnByIdAsync(string id);
+    Task<List<WatchOn>> GetAllForEventAsync(string eventId);
     Task UpsertAsync(WatchOn watchOn);
 }
 
@@ -13,6 +14,9 @@ public sealed class WatchOnService(WatchOnDbContext db) : IWatchOnService
 {
     public Task<WatchOn?> GetWatchOnByIdAsync(string id) =>
         db.WatchOn.FindAsync(id).AsTask();
+    
+    public async Task<List<WatchOn>> GetAllForEventAsync(string eventId) =>
+        await db.WatchOn.Where(w => w.Id == eventId).ToListAsync();
 
     public async Task UpsertAsync(WatchOn watchOn)
     {
