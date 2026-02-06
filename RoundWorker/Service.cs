@@ -21,12 +21,12 @@ public sealed class Service(
             PropertyNameCaseInsensitive = true
         };
 
-    private const string PlayerQueueName = "rounds";
-    private const string PlayerCacheKeyPrefix = "rounds:";
+    private const string RoundQueueName = "rounds";
+    private const string RoundCacheKeyPrefix = "rounds:";
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        queue.Start(PlayerQueueName, HandleMessage);
+        queue.Start(RoundQueueName, HandleMessage);
         return Task.Delay(Timeout.Infinite, stoppingToken);
     }
 
@@ -78,7 +78,7 @@ public sealed class Service(
         if (exisitingRound is null)
         {
             await client.AddAsync(round);
-            await redis.SetAsync(PlayerCacheKeyPrefix + round.Id, round, TimeSpan.FromHours(2));
+            await redis.SetAsync(RoundCacheKeyPrefix + round.Id, round, TimeSpan.FromHours(2));
             return;
         }
 
@@ -87,6 +87,6 @@ public sealed class Service(
             return;
         
         await client.UpdateAsync(round.Id, round);
-        await redis.SetAsync(PlayerCacheKeyPrefix + round.Id, round, TimeSpan.FromHours(2));
+        await redis.SetAsync(RoundCacheKeyPrefix + round.Id, round, TimeSpan.FromHours(2));
     }
 };

@@ -218,6 +218,20 @@ services:
     networks:
       - external
   
+  round-worker:
+    image: round-worker
+    container_name: round-worker
+    build:
+      context: .
+      dockerfile: RoundWorker/Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./:/src
+    restart: unless-stopped
+    networks:
+      - external
+  
   match-api:
     image: match-api
     container_name: match-api

@@ -3,21 +3,21 @@ namespace Domain;
 public sealed class RoundRecord
 {
     public string Id { get; set; } = string.Empty;
-    public int Round { get; init; }
-    public string RoundName { get; init; } = string.Empty;
-    public int EventID { get; init; }
-    public int MainEvent { get; init; }
-    public int Distance { get; init; }
-    public int NumLeft { get; init; }
-    public int NumMatches { get; init; }
-    public string Note { get; init; } = string.Empty;
-    public string ValueType { get; init; } = string.Empty;
-    public int Rank { get; init; }
-    public int Money { get; init; }
-    public int SeedGetsHalf { get; init; }
-    public int ActualMoney { get; init; }
-    public string Currency { get; init; } = string.Empty;
-    public double ConversionRate { get; init; }
-    public int Points { get; init; }
-    public int SeedPoints { get; init; }
+    public int Round { get; set; }
+    public string RoundName { get; set; } = string.Empty;
+    public int EventID { get; set; }
+    public int MainEvent { get; set; }
+    public int Distance { get; set; }
+    public int NumLeft { get; set; }
+    public int NumMatches { get; set; }
+    public string Note { get; set; } = string.Empty;
+    public string ValueType { get; set; } = string.Empty;
+    public int Rank { get; set; }
+    public int Money { get; set; }
+    public int SeedGetsHalf { get; set; }
+    public int ActualMoney { get; set; }
+    public string Currency { get; set; } = string.Empty;
+    public double ConversionRate { get; set; }
+    public int Points { get; set; }
+    public int SeedPoints { get; set; }
 }
