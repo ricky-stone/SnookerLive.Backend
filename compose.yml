@@ -135,6 +135,18 @@ services:
     restart: unless-stopped
     networks:
       - external
+
+  round-sync:
+    image: round-sync
+    container_name: round-sync
+    build:
+      context: .
+      dockerfile: RoundSync/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external
   
   matches-worker:
     image: matches-worker
