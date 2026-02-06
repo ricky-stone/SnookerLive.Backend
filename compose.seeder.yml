@@ -28,3 +28,15 @@ services:
     restart: unless-stopped
     networks:
       - external
+  
+  player-seeder:
+    image: player-seeder
+    container_name: player-seeder
+    build:
+      context: .
+      dockerfile: PlayerSeeder/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - external

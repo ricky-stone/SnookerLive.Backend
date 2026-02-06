@@ -58,6 +58,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerWorker", "PlayerWorke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerApi", "PlayerApi\PlayerApi.csproj", "{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerSeeder", "PlayerSeeder\PlayerSeeder.csproj", "{97E7AB43-7232-4C77-84EB-65DC684FA04A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -380,6 +382,18 @@ Global
 		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|x64.Build.0 = Release|Any CPU
 		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|x86.ActiveCfg = Release|Any CPU
 		{AEE913E1-E9F6-48AE-8665-EB202A2F1AC3}.Release|x86.Build.0 = Release|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Debug|x64.Build.0 = Debug|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Debug|x86.Build.0 = Debug|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Release|x64.ActiveCfg = Release|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Release|x64.Build.0 = Release|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Release|x86.ActiveCfg = Release|Any CPU
+		{97E7AB43-7232-4C77-84EB-65DC684FA04A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
