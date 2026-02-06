@@ -4,7 +4,7 @@ using Rabbit;
 
 namespace SnookerLive;
 
-public sealed class Service(Logger<Service> logger, IMessageBus bus) : BackgroundService
+public sealed class Service(ILogger<Service> logger, IMessageBus bus) : BackgroundService
 {
     public const int Endpoint = 10;
     private const string QueueName = "snookerorg.medium";

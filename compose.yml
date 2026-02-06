@@ -102,6 +102,20 @@ services:
     networks:
       - external
   
+  player-worker:
+    image: player-worker
+    container_name: player-worker
+    build:
+      context: .
+      dockerfile: PlayerWorker/Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./:/src
+    restart: unless-stopped
+    networks:
+      - external
+  
   events-worker:
     image: events-worker
     container_name: events-worker

@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchSeeder", "MatchSeeder\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerSync", "PlayerSync\PlayerSync.csproj", "{3C35AC28-9575-46C5-93F8-B5274C5ACF58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerWorker", "PlayerWorker\PlayerWorker.csproj", "{F2C88272-7E3B-41DB-8966-8D2FDD03534C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -352,6 +354,18 @@ Global
 		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|x64.Build.0 = Release|Any CPU
 		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|x86.ActiveCfg = Release|Any CPU
 		{3C35AC28-9575-46C5-93F8-B5274C5ACF58}.Release|x86.Build.0 = Release|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Debug|x64.Build.0 = Debug|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Debug|x86.Build.0 = Debug|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|x64.ActiveCfg = Release|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|x64.Build.0 = Release|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|x86.ActiveCfg = Release|Any CPU
+		{F2C88272-7E3B-41DB-8966-8D2FDD03534C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
