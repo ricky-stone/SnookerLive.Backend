@@ -1,5 +1,5 @@
 name: Deploy to server
-run-name: Deploy ${{ inputs.service }} (${{ inputs.tag != '' && inputs.tag || 'latest' }})
+run-name: Deploy ${{ inputs.service }} (${{ inputs.tag }})
 
 on:
   workflow_dispatch:
@@ -11,9 +11,8 @@ on:
         options:
           - snookerorg
       tag:
-        description: "Image tag to deploy (leave blank for latest)"
-        required: false
-        default: ""
+        description: "Image tag to deploy (e.g. 1.2.1)"
+        required: true
 
 env:
   REGISTRY: image.tool.ovh
@@ -37,11 +36,11 @@ jobs:
           USER: ${{ secrets.SERVER_USER }}
           PASS: ${{ secrets.SERVER_PASSWORD }}
           SERVICE: ${{ inputs.service }}
-          INPUT_TAG: ${{ inputs.tag }}
+          TAG: ${{ inputs.tag }}
           HARBOR_USER: ${{ secrets.HARBOR_USERNAME }}
           HARBOR_PASS: ${{ secrets.HARBOR_PASSWORD }}
         run: |
-          sshpass -p "$PASS" ssh -o StrictHostKeyChecking=no "$USER@$HOST" "bash -lc '
+          sshpass -p "$PASS" ssh -o StrictHostKeyChecking=no "$USER@$HOST" bash -lc "'
             set -euo pipefail
 
             cd \"${SERVICE_DIR}\"
@@ -53,14 +52,9 @@ jobs:
 
             echo \"${HARBOR_PASS}\" | docker login \"${REGISTRY}\" -u \"${HARBOR_USER}\" --password-stdin
 
-            if [ -n \"${INPUT_TAG}\" ]; then
-              TAG=\"${INPUT_TAG}\"
-              TAG=\"$TAG\" docker compose pull \"${SERVICE}\"
-              TAG=\"$TAG\" docker compose up -d \"${SERVICE}\"
-            else
-              docker compose pull \"${SERVICE}\"
-              docker compose up -d \"${SERVICE}\"
-            fi
+            echo \"Deploying ${SERVICE} with tag ${TAG}\"
 
+            TAG=\"${TAG}\" docker compose pull \"${SERVICE}\"
+            TAG=\"${TAG}\" docker compose up -d \"${SERVICE}\"
             docker compose ps \"${SERVICE}\"
           '"
