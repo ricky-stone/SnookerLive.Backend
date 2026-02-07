@@ -20,6 +20,7 @@ on:
           - session-api
           - round-api
           - match-worker
+          - frame-worker
           - events-worker
           - watchon-worker
           - round-worker
