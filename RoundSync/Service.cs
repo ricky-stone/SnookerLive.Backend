@@ -11,7 +11,7 @@ public sealed class Service(ILogger<Service> logger, IMessageBus bus) : Backgrou
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var clock = new ShotClock(TimeSpan.FromHours(1), PublishRequestAsync);
+        var clock = new ShotClock(TimeSpan.FromMinutes(20), PublishRequestAsync);
         await clock.RunAsync(stoppingToken);
     }
 
