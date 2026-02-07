@@ -31,6 +31,8 @@ on:
           - finished-event-matches-sync
           - events-sync
           - round-sync
+          - match-seeder
+          - event-seeder
       tag:
         description: "Image tag to deploy (e.g. 1.2.1)"
         required: true
