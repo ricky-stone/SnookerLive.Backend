@@ -13,7 +13,7 @@ public sealed class RoundApiClient(HttpClient http) : IRoundApiClient
     public async Task<RoundRecord?> GetAsync(string id)
     {
         var response = await http.GetAsync(id);
-        
+
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             return null;
 
@@ -32,7 +32,7 @@ public sealed class RoundApiClient(HttpClient http) : IRoundApiClient
     public async Task<List<RoundRecord>?> GetByEventIdAsync(string eventId)
     {
         var response = await http.GetAsync($"event/{eventId}");
-        
+
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             return null;
 
@@ -45,6 +45,37 @@ public sealed class RoundApiClient(HttpClient http) : IRoundApiClient
                 response.StatusCode);
         }
 
-        return await response.Content.ReadFromJsonAsync<List<RoundRecord>>() ?? null;
-    }   
+        var rounds = await response.Content.ReadFromJsonAsync<List<RoundRecord>>();
+        if (rounds is null)
+            return null;
+        
+        rounds = NormalizeFinalRound(rounds);
+
+        return rounds;
+    }
+
+    private static List<RoundRecord> NormalizeFinalRound(List<RoundRecord> rounds)
+    {
+        if (rounds.Count == 0)
+            return rounds;
+
+        var loserFinal = rounds.FirstOrDefault(r =>
+            r.Round == 15 &&
+            string.Equals(r.RoundName, "Final", StringComparison.OrdinalIgnoreCase) &&
+            r.NumLeft == 2);
+
+        var winnerFinal = rounds.FirstOrDefault(r =>
+            r.Round == 17 &&
+            string.Equals(r.RoundName, "Final", StringComparison.OrdinalIgnoreCase) &&
+            r.NumLeft == 1);
+
+        if (loserFinal is null || winnerFinal is null)
+            return rounds;
+
+        loserFinal.WinnerMoney = winnerFinal.Money;
+
+        rounds.Remove(winnerFinal);
+
+        return rounds;
+    }
 }

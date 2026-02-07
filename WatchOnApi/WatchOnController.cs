@@ -15,6 +15,14 @@ public sealed class WatchOnController(IWatchOnService service) : ControllerBase
         return watchOn is not null ? Ok(watchOn) : NotFound();
     }
 
+    [HttpGet]
+    [Route("event/{eventId}")]
+    public async Task<IActionResult> GetByEventId([FromRoute] string eventId)
+    {
+        var watchOnList = await service.GetAllForEventAsync(eventId);
+        return watchOnList is not null ? Ok(watchOnList) : NotFound();
+    }
+
     [HttpPut]
     [Route("{id}")]
     public async Task<IActionResult> Upsert([FromRoute] string id, [FromBody] WatchOn watchOn)

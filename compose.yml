@@ -380,4 +380,24 @@ services:
     networks:
       - external
   
+  snooker-api:
+    image: snooker-api
+    container_name: snooker-api
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    networks:
+      - external
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.snooker.rule=Host(`api.local`)
+      - traefik.http.routers.snooker.entrypoints=websecure
+      - traefik.http.routers.snooker.tls=true
+      - traefik.http.services.snooker-api.loadbalancer.server.port=80
+  
 

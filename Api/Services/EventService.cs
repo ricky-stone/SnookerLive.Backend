@@ -14,37 +14,30 @@ public sealed class EventService(
     ICacheService redis) : IEventService
 {
 
-    public async Task<SnookerEvent?> GetEventByIdAsync(string id)
+    public Task<SnookerEvent?> GetEventByIdAsync(string id)
     {
+        return redis.GetOrSetAsync(
+            $"event:full:{id}",
+            TimeSpan.FromMinutes(19),
+            async () =>
+            {
+                var evtTask = eventApiClient.GetAsync(id);
+                var watchOnTask = watchOnApiClient.GetByEventIdAsync(id);
+                var roundsTask = roundApiClient.GetByEventIdAsync(id);
 
-        var evtTask = redis.GetOrSetAsync(
-            $"event:{id}",
-            TimeSpan.FromHours(2),
-            () => eventApiClient.GetAsync(id));
+                await Task.WhenAll(evtTask, watchOnTask, roundsTask);
 
-        var watchOnTask = redis.GetOrSetAsync(
-            $"watchon:{id}",
-            TimeSpan.FromHours(2),
-            () => watchOnApiClient.GetByEventIdAsync(id));
-        
-        var roundsTask = redis.GetOrSetAsync(
-            $"rounds:{id}",
-            TimeSpan.FromHours(2),
-            () => roundApiClient.GetByEventIdAsync(id));
-        
+                var evt = await evtTask;
+                if (evt is null) return null;
 
-        await Task.WhenAll(evtTask, watchOnTask, roundsTask);
-
-        if(evtTask.Result == null)
-            return null;
-
-        return new SnookerEvent
-        {
-            Id = evtTask.Result.Id,
-            Event = evtTask.Result,
-            WatchOn = watchOnTask.Result,
-            Rounds = roundsTask.Result
-        };
+                return new SnookerEvent
+                {
+                    Id = evt.Id,
+                    Event = evt,
+                    WatchOn = await watchOnTask,
+                    Rounds = await roundsTask
+                };
+            });
     }
 
 }

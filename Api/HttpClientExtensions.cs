@@ -24,7 +24,7 @@ public static class HttpClientExtensions
 
     public static IServiceCollection AddEventHttpClient(this IServiceCollection services)
     {
-        services.AddHttpClient<IPlayerApiClient, PlayerApiClient>(c =>
+        services.AddHttpClient<IEventApiClient, EventApiClient>(c =>
             {
                 c.BaseAddress = new Uri("http://event-api", UriKind.Absolute);
                 c.Timeout = TimeSpan.FromSeconds(3);

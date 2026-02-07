@@ -5,7 +5,7 @@ namespace SnookerLive;
 public interface IWatchOnApiClient
 {
     Task<WatchOn?> GetAsync(string id);
-    Task<List<WatchOn>?> GetByEventIdAsync(string eventId);
+    Task<WatchOn?> GetByEventIdAsync(string eventId);
 }
 
 public sealed class WatchOnApiClient(HttpClient http) : IWatchOnApiClient
@@ -29,7 +29,7 @@ public sealed class WatchOnApiClient(HttpClient http) : IWatchOnApiClient
         return await response.Content.ReadFromJsonAsync<WatchOn>();
     }
 
-    public async Task<List<WatchOn>?> GetByEventIdAsync(string eventId)
+    public async Task<WatchOn?> GetByEventIdAsync(string eventId)
     {
         var response = await http.GetAsync($"event/{eventId}");
         
@@ -45,6 +45,8 @@ public sealed class WatchOnApiClient(HttpClient http) : IWatchOnApiClient
                 response.StatusCode);
         }
 
-        return await response.Content.ReadFromJsonAsync<List<WatchOn>>() ?? null;
+        Console.WriteLine(await response.Content.ReadAsStringAsync());
+
+        return await response.Content.ReadFromJsonAsync<WatchOn>() ?? null;
     }   
 }

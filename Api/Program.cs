@@ -7,6 +7,8 @@ builder.Services
     .AddPlayerHttpClient()
     .AddEventHttpClient()
     .AddRankingHttpClient()
+    .AddWatchOnHttpClient()
+    .AddRoundHttpClient()
     .AddRedisCache()
     .AddSingleton<IEventService, EventService>()
     .AddControllers();

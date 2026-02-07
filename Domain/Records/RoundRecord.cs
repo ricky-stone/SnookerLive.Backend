@@ -5,7 +5,7 @@ public sealed class RoundRecord
     public string Id { get; set; } = string.Empty;
     public int Round { get; set; }
     public string RoundName { get; set; } = string.Empty;
-    public int EventID { get; set; }
+    public int EventID { get; set; }    
     public int MainEvent { get; set; }
     public int Distance { get; set; }
     public int NumLeft { get; set; }
@@ -20,4 +20,5 @@ public sealed class RoundRecord
     public double ConversionRate { get; set; }
     public int Points { get; set; }
     public int SeedPoints { get; set; }
+    public int WinnerMoney { get; set; }
 }
