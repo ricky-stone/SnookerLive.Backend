@@ -1,4 +1,5 @@
 name: Build and push to Harbor
+run-name: Build ${{ inputs.service }} (${{ inputs.tag != '' && inputs.tag || github.sha }})
 
 on:
   workflow_dispatch:
@@ -64,137 +65,44 @@ jobs:
           username: ${{ secrets.HARBOR_USERNAME }}
           password: ${{ secrets.HARBOR_PASSWORD }}
 
-      - name: Resolve compose service config
+      - name: Resolve service config
         id: cfg
         shell: bash
         run: |
           set -euo pipefail
 
           case "${{ inputs.service }}" in
-            snookerorg)
-              IMAGE="snookerorg"
-              DOCKERFILE="SnookerOrg/Dockerfile"
-              ;;
-            live-matches-sync)
-              IMAGE="live-matches-sync"
-              DOCKERFILE="LiveMatchesSync/Dockerfile"
-              ;;
-            live-event-matches-sync)
-              IMAGE="live-event-matches-sync"
-              DOCKERFILE="LiveEventMatchesSync/Dockerfile"
-              ;;
-            upcoming-event-matches-sync)
-              IMAGE="upcoming-event-matches-sync"
-              DOCKERFILE="UpcomingEventMatchesSync/Dockerfile"
-              ;;
-            finished-event-matches-sync)
-              IMAGE="finished-event-matches-sync"
-              DOCKERFILE="FinishedEventMatchesSync/Dockerfile"
-              ;;
-            events-sync)
-              IMAGE="events-sync"
-              DOCKERFILE="EventsSync/Dockerfile"
-              ;;
-            player-sync)
-              IMAGE="player-sync"
-              DOCKERFILE="PlayerSync/Dockerfile"
-              ;;
-            money-ranking-sync)
-              IMAGE="money-ranking-sync"
-              DOCKERFILE="MoneyRankingSync/Dockerfile"
-              ;;
-            money-seeding-sync)
-              IMAGE="money-seeding-sync"
-              DOCKERFILE="MoneySeedingSync/Dockerfile"
-              ;;
-            qtour-ranking-sync)
-              IMAGE="qtour-ranking-sync"
-              DOCKERFILE="QTourRankingSync/Dockerfile"
-              ;;
-            womens-ranking-sync)
-              IMAGE="womens-ranking-sync"
-              DOCKERFILE="WomensRankingSync/Dockerfile"
-              ;;
-            round-sync)
-              IMAGE="round-sync"
-              DOCKERFILE="RoundSync/Dockerfile"
-              ;;
-            matches-worker)
-              IMAGE="matches-worker"
-              DOCKERFILE="MatchesWorker/Dockerfile"
-              ;;
-            player-worker)
-              IMAGE="player-worker"
-              DOCKERFILE="PlayerWorker/Dockerfile"
-              ;;
-            ranking-worker)
-              IMAGE="ranking-worker"
-              DOCKERFILE="RankingWorker/Dockerfile"
-              ;;
-            events-worker)
-              IMAGE="events-worker"
-              DOCKERFILE="EventsWorker/Dockerfile"
-              ;;
-            watchon-worker)
-              IMAGE="watchon-worker"
-              DOCKERFILE="WatchOnWorker/Dockerfile"
-              ;;
-            round-worker)
-              IMAGE="round-worker"
-              DOCKERFILE="RoundWorker/Dockerfile"
-              ;;
-            match-api)
-              IMAGE="match-api"
-              DOCKERFILE="MatchApi/Dockerfile"
-              ;;
-            round-api)
-              IMAGE="round-api"
-              DOCKERFILE="RoundApi/Dockerfile"
-              ;;
-            player-api)
-              IMAGE="player-api"
-              DOCKERFILE="PlayerApi/Dockerfile"
-              ;;
-            watchon-api)
-              IMAGE="watchon-api"
-              DOCKERFILE="WatchOnApi/Dockerfile"
-              ;;
-            event-api)
-              IMAGE="event-api"
-              DOCKERFILE="EventApi/Dockerfile"
-              ;;
-            notification-worker)
-              IMAGE="notification-worker"
-              DOCKERFILE="NotificationWorker/Dockerfile"
-              ;;
-            session-worker)
-              IMAGE="session-worker"
-              DOCKERFILE="SessionWorker/Dockerfile"
-              ;;
-            session-api)
-              IMAGE="session-api"
-              DOCKERFILE="SessionApi/Dockerfile"
-              ;;
-            frame-worker)
-              IMAGE="frame-worker"
-              DOCKERFILE="FrameWorker/Dockerfile"
-              ;;
-            frame-api)
-              IMAGE="frame-api"
-              DOCKERFILE="FrameApi/Dockerfile"
-              ;;
-            ranking-api)
-              IMAGE="ranking-api"
-              DOCKERFILE="RankingApi/Dockerfile"
-              ;;
-            snooker-api)
-              IMAGE="snooker-api"
-              DOCKERFILE="Api/Dockerfile"
-              ;;
-            *)
-              echo "Service not registered"
-              exit 1
-              ;;
+            snookerorg) IMAGE="snookerorg"; DOCKERFILE="SnookerOrg/Dockerfile" ;;
+            live-matches-sync) IMAGE="live-matches-sync"; DOCKERFILE="LiveMatchesSync/Dockerfile" ;;
+            live-event-matches-sync) IMAGE="live-event-matches-sync"; DOCKERFILE="LiveEventMatchesSync/Dockerfile" ;;
+            upcoming-event-matches-sync) IMAGE="upcoming-event-matches-sync"; DOCKERFILE="UpcomingEventMatchesSync/Dockerfile" ;;
+            finished-event-matches-sync) IMAGE="finished-event-matches-sync"; DOCKERFILE="FinishedEventMatchesSync/Dockerfile" ;;
+            events-sync) IMAGE="events-sync"; DOCKERFILE="EventsSync/Dockerfile" ;;
+            player-sync) IMAGE="player-sync"; DOCKERFILE="PlayerSync/Dockerfile" ;;
+            money-ranking-sync) IMAGE="money-ranking-sync"; DOCKERFILE="MoneyRankingSync/Dockerfile" ;;
+            money-seeding-sync) IMAGE="money-seeding-sync"; DOCKERFILE="MoneySeedingSync/Dockerfile" ;;
+            qtour-ranking-sync) IMAGE="qtour-ranking-sync"; DOCKERFILE="QTourRankingSync/Dockerfile" ;;
+            womens-ranking-sync) IMAGE="womens-ranking-sync"; DOCKERFILE="WomensRankingSync/Dockerfile" ;;
+            round-sync) IMAGE="round-sync"; DOCKERFILE="RoundSync/Dockerfile" ;;
+            matches-worker) IMAGE="matches-worker"; DOCKERFILE="MatchesWorker/Dockerfile" ;;
+            player-worker) IMAGE="player-worker"; DOCKERFILE="PlayerWorker/Dockerfile" ;;
+            ranking-worker) IMAGE="ranking-worker"; DOCKERFILE="RankingWorker/Dockerfile" ;;
+            events-worker) IMAGE="events-worker"; DOCKERFILE="EventsWorker/Dockerfile" ;;
+            watchon-worker) IMAGE="watchon-worker"; DOCKERFILE="WatchOnWorker/Dockerfile" ;;
+            round-worker) IMAGE="round-worker"; DOCKERFILE="RoundWorker/Dockerfile" ;;
+            match-api) IMAGE="match-api"; DOCKERFILE="MatchApi/Dockerfile" ;;
+            round-api) IMAGE="round-api"; DOCKERFILE="RoundApi/Dockerfile" ;;
+            player-api) IMAGE="player-api"; DOCKERFILE="PlayerApi/Dockerfile" ;;
+            watchon-api) IMAGE="watchon-api"; DOCKERFILE="WatchOnApi/Dockerfile" ;;
+            event-api) IMAGE="event-api"; DOCKERFILE="EventApi/Dockerfile" ;;
+            notification-worker) IMAGE="notification-worker"; DOCKERFILE="NotificationWorker/Dockerfile" ;;
+            session-worker) IMAGE="session-worker"; DOCKERFILE="SessionWorker/Dockerfile" ;;
+            session-api) IMAGE="session-api"; DOCKERFILE="SessionApi/Dockerfile" ;;
+            frame-worker) IMAGE="frame-worker"; DOCKERFILE="FrameWorker/Dockerfile" ;;
+            frame-api) IMAGE="frame-api"; DOCKERFILE="FrameApi/Dockerfile" ;;
+            ranking-api) IMAGE="ranking-api"; DOCKERFILE="RankingApi/Dockerfile" ;;
+            snooker-api) IMAGE="snooker-api"; DOCKERFILE="Api/Dockerfile" ;;
+            *) echo "Service not registered"; exit 1 ;;
           esac
 
           if [[ ! -f "$DOCKERFILE" ]]; then
@@ -205,19 +113,17 @@ jobs:
           echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
           echo "dockerfile=$DOCKERFILE" >> "$GITHUB_OUTPUT"
 
-      - name: Compute image tag
+      - name: Compute tag
         id: tag
         shell: bash
         run: |
           set -euo pipefail
           SHORT_SHA="${GITHUB_SHA::7}"
-
           if [[ -n "${{ inputs.tag }}" ]]; then
             TAG="${{ inputs.tag }}"
           else
             TAG="$SHORT_SHA"
           fi
-
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
 
       - uses: docker/build-push-action@v6
