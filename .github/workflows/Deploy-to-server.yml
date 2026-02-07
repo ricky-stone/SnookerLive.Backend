@@ -21,12 +21,15 @@ on:
           - round-api
           - match-worker
           - events-worker
+          - watchon-worker
+          - round-worker
           - session-worker
           - live-match-sync
           - live-event-matches-sync
           - upcoming-event-matches-sync
           - finished-event-matches-sync
           - events-sync
+          - round-sync
       tag:
         description: "Image tag to deploy (e.g. 1.2.1)"
         required: true
