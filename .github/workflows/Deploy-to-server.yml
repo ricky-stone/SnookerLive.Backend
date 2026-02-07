@@ -1,0 +1,66 @@
+name: Deploy to server
+run-name: Deploy ${{ inputs.service }} (${{ inputs.tag != '' && inputs.tag || 'latest' }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        description: "Service to deploy"
+        required: true
+        type: choice
+        options:
+          - snookerorg
+      tag:
+        description: "Image tag to deploy (leave blank for latest)"
+        required: false
+        default: ""
+
+env:
+  REGISTRY: image.tool.ovh
+  SERVICE_DIR: /home/debian/projects/snookerlive
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Install sshpass
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y sshpass
+
+      - name: Deploy via SSH (pull + up)
+        env:
+          HOST: ${{ secrets.SERVER_HOST }}
+          USER: ${{ secrets.SERVER_USER }}
+          PASS: ${{ secrets.SERVER_PASSWORD }}
+          SERVICE: ${{ inputs.service }}
+          INPUT_TAG: ${{ inputs.tag }}
+          HARBOR_USER: ${{ secrets.HARBOR_USERNAME }}
+          HARBOR_PASS: ${{ secrets.HARBOR_PASSWORD }}
+        run: |
+          sshpass -p "$PASS" ssh -o StrictHostKeyChecking=no "$USER@$HOST" "bash -lc '
+            set -euo pipefail
+
+            cd \"${SERVICE_DIR}\"
+
+            if [ ! -f compose.yml ]; then
+              echo \"compose.yml not found in ${SERVICE_DIR}\" >&2
+              exit 1
+            fi
+
+            echo \"${HARBOR_PASS}\" | docker login \"${REGISTRY}\" -u \"${HARBOR_USER}\" --password-stdin
+
+            if [ -n \"${INPUT_TAG}\" ]; then
+              TAG=\"${INPUT_TAG}\"
+              TAG=\"$TAG\" docker compose pull \"${SERVICE}\"
+              TAG=\"$TAG\" docker compose up -d \"${SERVICE}\"
+            else
+              docker compose pull \"${SERVICE}\"
+              docker compose up -d \"${SERVICE}\"
+            fi
+
+            docker compose ps \"${SERVICE}\"
+          '"
