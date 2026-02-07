@@ -19,6 +19,7 @@ on:
           - frameapi
           - sessionapi
           - roundapi
+          - matchworker
       tag:
         description: "Image tag to deploy (e.g. 1.2.1)"
         required: true
