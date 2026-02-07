@@ -20,6 +20,7 @@ on:
           - sessionapi
           - roundapi
           - matchworker
+          - sessionworker
           - livematchsync
       tag:
         description: "Image tag to deploy (e.g. 1.2.1)"
