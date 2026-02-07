@@ -39,6 +39,7 @@ on:
           - frame-api
           - ranking-api
           - snooker-api
+          - match-seeder
       tag:
         description: "Image tag (leave blank to use short SHA)"
         required: false
@@ -102,6 +103,8 @@ jobs:
             frame-api) IMAGE="frame-api"; DOCKERFILE="FrameApi/Dockerfile" ;;
             ranking-api) IMAGE="ranking-api"; DOCKERFILE="RankingApi/Dockerfile" ;;
             snooker-api) IMAGE="snooker-api"; DOCKERFILE="Api/Dockerfile" ;;
+            match-seeder) IMAGE="match-seeder"; DOCKERFILE="MatchSeeder/Dockerfile" ;;
+            event-seeder) IMAGE="event-seeder"; DOCKERFILE="EventSeeder/Dockerfile" ;;
             *) echo "Service not registered"; exit 1 ;;
           esac
 
