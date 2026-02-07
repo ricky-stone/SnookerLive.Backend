@@ -4,15 +4,40 @@ on:
   workflow_dispatch:
     inputs:
       service:
-        description: "Service to build"
+        description: "Compose service to build"
         required: true
         type: choice
         options:
-          - MatchApi
-          - EventApi
-          - RankingApi
-          - LiveMatchesSync
-          - MatchesWorker
+          - snookerorg
+          - live-matches-sync
+          - live-event-matches-sync
+          - upcoming-event-matches-sync
+          - finished-event-matches-sync
+          - events-sync
+          - player-sync
+          - money-ranking-sync
+          - money-seeding-sync
+          - qtour-ranking-sync
+          - womens-ranking-sync
+          - round-sync
+          - matches-worker
+          - player-worker
+          - ranking-worker
+          - events-worker
+          - watchon-worker
+          - round-worker
+          - match-api
+          - round-api
+          - player-api
+          - watchon-api
+          - event-api
+          - notification-worker
+          - session-worker
+          - session-api
+          - frame-worker
+          - frame-api
+          - ranking-api
+          - snooker-api
       tag:
         description: "Image tag (leave blank to use short SHA)"
         required: false
@@ -39,32 +64,132 @@ jobs:
           username: ${{ secrets.HARBOR_USERNAME }}
           password: ${{ secrets.HARBOR_PASSWORD }}
 
-      - name: Resolve service config
+      - name: Resolve compose service config
         id: cfg
         shell: bash
         run: |
           set -euo pipefail
 
           case "${{ inputs.service }}" in
-            MatchApi)
-              SERVICE_DIR="MatchApi"
-              IMAGE_NAME="match-api"
+            snookerorg)
+              IMAGE="snookerorg"
+              DOCKERFILE="SnookerOrg/Dockerfile"
               ;;
-            EventApi)
-              SERVICE_DIR="EventApi"
-              IMAGE_NAME="event-api"
+            live-matches-sync)
+              IMAGE="live-matches-sync"
+              DOCKERFILE="LiveMatchesSync/Dockerfile"
               ;;
-            RankingApi)
-              SERVICE_DIR="RankingApi"
-              IMAGE_NAME="ranking-api"
+            live-event-matches-sync)
+              IMAGE="live-event-matches-sync"
+              DOCKERFILE="LiveEventMatchesSync/Dockerfile"
               ;;
-            LiveMatchesSync)
-              SERVICE_DIR="LiveMatchesSync"
-              IMAGE_NAME="live-matches-sync"
+            upcoming-event-matches-sync)
+              IMAGE="upcoming-event-matches-sync"
+              DOCKERFILE="UpcomingEventMatchesSync/Dockerfile"
               ;;
-            MatchesWorker)
-              SERVICE_DIR="MatchesWorker"
-              IMAGE_NAME="matches-worker"
+            finished-event-matches-sync)
+              IMAGE="finished-event-matches-sync"
+              DOCKERFILE="FinishedEventMatchesSync/Dockerfile"
+              ;;
+            events-sync)
+              IMAGE="events-sync"
+              DOCKERFILE="EventsSync/Dockerfile"
+              ;;
+            player-sync)
+              IMAGE="player-sync"
+              DOCKERFILE="PlayerSync/Dockerfile"
+              ;;
+            money-ranking-sync)
+              IMAGE="money-ranking-sync"
+              DOCKERFILE="MoneyRankingSync/Dockerfile"
+              ;;
+            money-seeding-sync)
+              IMAGE="money-seeding-sync"
+              DOCKERFILE="MoneySeedingSync/Dockerfile"
+              ;;
+            qtour-ranking-sync)
+              IMAGE="qtour-ranking-sync"
+              DOCKERFILE="QTourRankingSync/Dockerfile"
+              ;;
+            womens-ranking-sync)
+              IMAGE="womens-ranking-sync"
+              DOCKERFILE="WomensRankingSync/Dockerfile"
+              ;;
+            round-sync)
+              IMAGE="round-sync"
+              DOCKERFILE="RoundSync/Dockerfile"
+              ;;
+            matches-worker)
+              IMAGE="matches-worker"
+              DOCKERFILE="MatchesWorker/Dockerfile"
+              ;;
+            player-worker)
+              IMAGE="player-worker"
+              DOCKERFILE="PlayerWorker/Dockerfile"
+              ;;
+            ranking-worker)
+              IMAGE="ranking-worker"
+              DOCKERFILE="RankingWorker/Dockerfile"
+              ;;
+            events-worker)
+              IMAGE="events-worker"
+              DOCKERFILE="EventsWorker/Dockerfile"
+              ;;
+            watchon-worker)
+              IMAGE="watchon-worker"
+              DOCKERFILE="WatchOnWorker/Dockerfile"
+              ;;
+            round-worker)
+              IMAGE="round-worker"
+              DOCKERFILE="RoundWorker/Dockerfile"
+              ;;
+            match-api)
+              IMAGE="match-api"
+              DOCKERFILE="MatchApi/Dockerfile"
+              ;;
+            round-api)
+              IMAGE="round-api"
+              DOCKERFILE="RoundApi/Dockerfile"
+              ;;
+            player-api)
+              IMAGE="player-api"
+              DOCKERFILE="PlayerApi/Dockerfile"
+              ;;
+            watchon-api)
+              IMAGE="watchon-api"
+              DOCKERFILE="WatchOnApi/Dockerfile"
+              ;;
+            event-api)
+              IMAGE="event-api"
+              DOCKERFILE="EventApi/Dockerfile"
+              ;;
+            notification-worker)
+              IMAGE="notification-worker"
+              DOCKERFILE="NotificationWorker/Dockerfile"
+              ;;
+            session-worker)
+              IMAGE="session-worker"
+              DOCKERFILE="SessionWorker/Dockerfile"
+              ;;
+            session-api)
+              IMAGE="session-api"
+              DOCKERFILE="SessionApi/Dockerfile"
+              ;;
+            frame-worker)
+              IMAGE="frame-worker"
+              DOCKERFILE="FrameWorker/Dockerfile"
+              ;;
+            frame-api)
+              IMAGE="frame-api"
+              DOCKERFILE="FrameApi/Dockerfile"
+              ;;
+            ranking-api)
+              IMAGE="ranking-api"
+              DOCKERFILE="RankingApi/Dockerfile"
+              ;;
+            snooker-api)
+              IMAGE="snooker-api"
+              DOCKERFILE="Api/Dockerfile"
               ;;
             *)
               echo "Service not registered"
@@ -72,16 +197,13 @@ jobs:
               ;;
           esac
 
-          DOCKERFILE="$SERVICE_DIR/Dockerfile"
-
           if [[ ! -f "$DOCKERFILE" ]]; then
-            echo "Dockerfile not found at $DOCKERFILE"
+            echo "Dockerfile not found: $DOCKERFILE"
             exit 1
           fi
 
-          echo "service_dir=$SERVICE_DIR" >> "$GITHUB_OUTPUT"
+          echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
           echo "dockerfile=$DOCKERFILE" >> "$GITHUB_OUTPUT"
-          echo "image=$IMAGE_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Compute image tag
         id: tag
