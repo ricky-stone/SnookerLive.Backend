@@ -11,6 +11,14 @@ on:
         options:
           - snookerorg
           - snookerapi
+          - matchapi
+          - playerapi
+          - rankingapi
+          - watchonapi
+          - eventapi
+          - frameapi
+          - sessionapi
+          - roundapi
       tag:
         description: "Image tag to deploy (e.g. 1.2.1)"
         required: true
